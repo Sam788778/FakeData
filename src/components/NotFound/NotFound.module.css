@@ -1,0 +1,36 @@
+.notFound {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4a00e0, #8e2de2);
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 120px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.backButton {
+  padding: 12px 24px;
+  background-color: #ffffff30;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.backButton:hover {
+  background-color: white;
+  color: #4a00e0;
+}

@@ -1,0 +1,25 @@
+.PostsData {
+  background: linear-gradient(135deg, #c471ed, #f64f59);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.PostsData:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.PostsData h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.PostsData p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
