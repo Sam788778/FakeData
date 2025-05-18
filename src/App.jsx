@@ -1,72 +1,83 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Nav from './components/nav/nav.jsx'
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import PostsData from './components/PostsData/PostsData.jsx'
-import Comments from './components/comments/comments.jsx'
-import Albums from './components/albums/albums.jsx'
-import Container from './components/container/container.jsx'
-import Todo from './components/todo/todo.jsx'
-import NotFound from './components/NotFound/NotFound.jsx'
-
-import { posts } from './DB/posts.js'
-import { comments } from './DB/comments.js'
-import { albums } from './DB/albums.js'
-import { todos } from './DB/todos.js'
+import { Nav, PostsData, Comments, Albums, Layout, Todo, NotFound } from './components';
 
 function App() {
+  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [albums, setAlbums] = useState([]);
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(data => setPosts(data));
+
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then(res => res.json())
+      .then(data => setComments(data));
+
+    fetch('https://jsonplaceholder.typicode.com/albums')
+      .then(res => res.json())
+      .then(data => setAlbums(data));
+
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => res.json())
+      .then(data => setTodos(data));
+  }, []);
+
   return (
-    <div>
+    <>
       <Nav />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Container
-              title="Welcome to the Home Page"
-              description=""
-            />
-          }
-        />
-        <Route
-          path="/posts"
-          element={
-            <div>
-              {posts.map(post => (
-                <PostsData key={post.id} post={post} />
-              ))}
-            </div>
-          }
-        />
-        <Route
-          path="/comments"
-          element={
-            <div>
-              {comments.map(comment => (
-                <Comments key={comment.id} comment={comment} />
-              ))}
-            </div>
-          }
-        />
-        <Route
-          path="/albums"
-          element={
-            <div>
-              {albums.map(album => (
-                <Albums key={album.id} album={album} />
-              ))}
-            </div>
-          }
-        />
-        <Route path="/todos" element={<Todo initialTodos={todos} />} />
-        <Route 
-          path='*'
-          element={<NotFound />}
-        />
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <div>
+                <h1>Welcome to the Home Page</h1>
+                <p>This is the home page of our application.</p>
+              </div>
+            }
+          />
+          <Route
+            path="posts"
+            element={
+              <div>
+                {posts.map(post => (
+                  <PostsData key={post.id} post={post} />
+                ))}
+              </div>
+            }
+          />
+          <Route
+            path="comments"
+            element={
+              <div>
+                {comments.map(comment => (
+                  <Comments key={comment.id} comment={comment} />
+                ))}
+              </div>
+            }
+          />
+          <Route
+            path="albums"
+            element={
+              <div>
+                {albums.map(album => (
+                  <Albums key={album.id} album={album} />
+                ))}
+              </div>
+            }
+          />
+          <Route path="todos" element={<Todo initialTodos={todos} />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
-    </div>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;

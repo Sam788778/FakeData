@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Input from '../input/input';
-import List from '../list/list';
+import Input from '../../components/input/input';
+import List from '../../components/list/list';
 
 const Todo = ({ initialTodos }) => {
   const [tasks, setTasks] = useState(initialTodos);
