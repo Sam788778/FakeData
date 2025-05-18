@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/layout.jsx'
+import Nav from './components/nav/nav.jsx';
 
-import { Nav, PostsData, Comments, Albums, Layout, Todo, NotFound } from './components';
+import { PostsData, Comments, Albums, Todo, NotFound } from './pages';
 
 function App() {
   const [posts, setPosts] = useState([]);
